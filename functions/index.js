@@ -16,3 +16,5 @@ exports.addMessage = functions.https.onRequest((req, res) => {
 exports.testHello = functions.https.onRequest((request, response) => {
     response.send("Test Hello");
 });
+
+// onRequest req res return
