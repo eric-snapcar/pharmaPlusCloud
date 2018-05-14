@@ -14,5 +14,5 @@ exports.addMessage = functions.https.onRequest((req, res) => {
   });
 });
 exports.testHello = functions.https.onRequest((request, response) => {
-    response.send("Hello from Firebase!");
+    response.send("Test Hello");
 });
