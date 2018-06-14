@@ -16,5 +16,23 @@ exports.addMessage = functions.https.onRequest((req, res) => {
 exports.testHello = functions.https.onRequest((request, response) => {
     response.send("Test Hello");
 });
+exports.addMessageBis = functions.https.onCall((data, context) => {
+  const text = data.text;
+  // Authentication / user information is automatically added to the request.
+  /*
+      const uid = context.auth.uid;
+      const name = context.auth.token.name || null;
+      const picture = context.auth.token.picture || null;
+      const email = context.auth.token.email || null;
+  */
+  const sanitizedMessage = text; // Sanitize the message.
+  return admin.database().ref('/messages').push({
+    text: sanitizedMessage,
+  }).then(() => {
+    return { text: sanitizedMessage, test:"TEST" };
+  })
+
+
+});
 
 // onRequest req res return
