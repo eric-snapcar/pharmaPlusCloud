@@ -1,5 +1,6 @@
 Deploy Firebase:
 firebase deploy --only functions
+firebase deploy --only functions:addMessage
 firebase functions:log
 Add Path:
 ~/.bash_profile
