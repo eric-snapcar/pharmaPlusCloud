@@ -26,3 +26,12 @@ exports.createUser = functions.https.onCall((data, context) => {
     return { email: email,id:id};
   })
 });
+exports.getUser = functions.https.onCall((data, context) => {
+  const email = data.email;
+  const id = data.id;
+  return admin.database().ref('users/' + id).set({
+    email: email,
+  }).then(() => {
+    return { email: email,id:id};
+  })
+});
