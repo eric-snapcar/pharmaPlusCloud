@@ -20,18 +20,17 @@ exports.addMessage = functions.https.onCall((data, context) => {
 exports.createUser = functions.https.onCall((data, context) => {
   const email = data.email;
   const id = data.id;
-  return admin.database().ref('users/' + id).set({
+  const ref = admin.database().ref('users/' + id);
+  return ref.set({
     email: email,
   }).then(() => {
     return { email: email,id:id};
   })
 });
 exports.getUser = functions.https.onCall((data, context) => {
-  const email = data.email;
   const id = data.id;
-  return admin.database().ref('users/' + id).set({
-    email: email,
-  }).then(() => {
-    return { email: email,id:id};
-  })
+  const ref = admin.database().ref('users/' + id);
+  ref.once("value", function(data) {
+    return { data: data};
+  });
 });
