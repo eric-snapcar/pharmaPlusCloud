@@ -30,7 +30,12 @@ exports.createUser = functions.https.onCall((data, context) => {
 exports.getUser = functions.https.onCall((data, context) => {
   const id = data.id;
   const ref = admin.database().ref('users/' + id);
-  ref.once("value", function(data) {
-    return { data: data};
-  },function(error){return { error: error};});
+ 
+
+  ref.once("value").then(function(data) {
+    console.log("TEST");
+    console.log(data);
+    return { test: "test",data:data.val()};
+  }).catch(function(error){return { error: error};});
+
 });
