@@ -32,5 +32,5 @@ exports.getUser = functions.https.onCall((data, context) => {
   const ref = admin.database().ref('users/' + id);
   ref.once("value", function(data) {
     return { data: data};
-  });
+  },function(error){return { error: error};});
 });
